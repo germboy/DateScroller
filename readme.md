@@ -1,6 +1,12 @@
 DateScroller for Enyo 2
 ====================
 
+Version
+-----
+
+1.1
+
+
 About
 -----
 
@@ -33,6 +39,7 @@ Properties
 - minYear -> Integer: Specifies the minimum year the DateScroller will show.
 - rangeYears -> Integer: Specifies the number of years the DateScroller will make available.
 - visibleRows -> Integer: Specifies the amount of rows that will be visible to the user. Must be an odd number! If value is an even number, value will be decreased by 1.
+- dateFormat -> Object Array: Specifies the order of your columns (m/d/y). If used, array must contain 3 objects containing value properties of "m", "d", and "y". For layout control, you can also specify a fit property on the column you want to fill the remainder of the DateScroller container. Ex: dateFormat:[{value: "d"},{value: "m", fit: true},{value: "y"}]
 
 
 Methods
@@ -54,3 +61,10 @@ Demos
 -----
 
 - http://www.variablelimit.com/enyo/lib/germboy/DateScroller/examples/DateScroller/
+
+
+Changelog
+---------
+
+1.1 - Added dateFormat property to specify the column order (m/d/y)
+1.0 - Initial release

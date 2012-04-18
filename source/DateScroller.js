@@ -267,7 +267,8 @@ enyo.kind({
 		minYear: undefined,
 		monthValue: undefined,
 		dayValue: undefined,
-		yearValue: undefined
+		yearValue: undefined,
+		dateFormat: [{value: "m", fit: true},{value: "d", fit: false},{value: "y", fit: false}]
 	},
 	handlers: {
 		onUpdateSelectedItems: "updateSelectedItems"
@@ -352,14 +353,30 @@ enyo.kind({
 		
 		var highlight = {classes: "dateScrollerHighlight", name: "highlight"}
 		
+		// Setup our kinds object
+		var kindOrder = {
+			m: {kind: "germboy.MonthScroller", params: paramsMonth, fit: false},
+			d: {kind: "germboy.DayScroller", params: paramsDay, fit: false},
+			y: {kind: "germboy.YearScroller", params: paramsYear, fit: false}
+		};
+		
+		// Specify which column will fit the remainder of the DateScroller container
+		kindOrder[this.dateFormat[0].value].fit = ((this.dateFormat[0].fit === undefined) || (this.dateFormat[0].fit === false)) ? false : true;
+		kindOrder[this.dateFormat[1].value].fit = ((this.dateFormat[1].fit === undefined) || (this.dateFormat[1].fit === false)) ? false : true;
+		kindOrder[this.dateFormat[2].value].fit = ((this.dateFormat[2].fit === undefined) || (this.dateFormat[2].fit === false)) ? false : true;
+		if ((!kindOrder.m.fit) && (!kindOrder.d.fit) && (!kindOrder.y.fit)) kindOrder.m.fit = true;
+		
+		// Insert components in the specified order
 		var components = [
 			{kind: "FittableColumns", components: [
-				{kind: "germboy.MonthScroller", params: paramsMonth, fit: true},
-				{kind: "germboy.DayScroller", params: paramsDay},
-				{kind: "germboy.YearScroller", params: paramsYear}
+				{kind: kindOrder[this.dateFormat[0].value].kind, params: kindOrder[this.dateFormat[0].value].params, fit: kindOrder[this.dateFormat[0].value].fit},
+				{kind: kindOrder[this.dateFormat[1].value].kind, params: kindOrder[this.dateFormat[1].value].params, fit: kindOrder[this.dateFormat[1].value].fit},
+				{kind: kindOrder[this.dateFormat[2].value].kind, params: kindOrder[this.dateFormat[2].value].params, fit: kindOrder[this.dateFormat[2].value].fit}
 			]},
 			highlight
 		];
+		
+		
 		this.createComponents(components);
 		
 		this.$.highlight.applyStyle("height", this.itemHeight + "px");

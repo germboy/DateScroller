@@ -15,6 +15,7 @@ enyo.kind({
 					minYear: 2011,
 					rangeYears: 10, 
 					visibleRows: 5,
+					//dateFormat: [{value: "d"},{value: "m", fit: true},{value: "y"}],
 					onDateSelected: "dateSelected"
 				},
 				
