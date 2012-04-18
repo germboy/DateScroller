@@ -1,0 +1,49 @@
+.dateScroller {
+	position: relative;
+	font-family: Century Gothic, 'Lucida Grande', 'Lucida Sans Unicode', Prelude, Prelude Medium, Segoe UI, Neue Helvetica, Arial, Helvetica, Sans-Serif;
+	font-weight: bold;
+	background-color: #FAFAFA;
+	border-radius: 8px;
+	border: 2px solid #567c99;
+	color: #000;
+	/*min-width: 310px; /* this gets updated programatically at run-time, based on user changes to indiviual columns */
+}
+
+.dateScroller * .monthScrollerColumn {
+	border-right: 1px solid lightblue;
+	text-align: right;
+	/* min-width: 150px;*/ /* This gets set programatically in DateScroller.js */
+}
+.dateScroller * .dayScrollerColumn {
+	border-right: 1px solid lightblue;
+	text-align: center;
+	min-width: 70px;
+}
+.dateScroller * .yearScrollerColumn {
+	text-align: center;
+	min-width: 70px;
+}
+
+.dateScroller * .monthScrollerColumn * .dateScrollerItem {
+	padding-right: 40px;
+}
+
+.dateScroller * .dateScrollerItem {
+	vertical-align: middle;
+	overflow: hidden;
+}
+.dateScrollerHighlight {
+	pointer-events: none;
+	
+	position: absolute;
+	width: 100%;
+	
+	border-color: #567c99;
+	border-width: 2px;
+	border-style: none;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	
+	background: rgba(145, 170, 190, 0.3);
+	box-shadow: 0px 4px 5px rgba(0,0,0,0.1);
+}
