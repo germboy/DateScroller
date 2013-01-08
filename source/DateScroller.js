@@ -33,7 +33,7 @@ enyo.kind({
 		var component = 
 			{kind: "enyo.Scroller", horizontal: "hidden", touch: this.params.touchEvents, onScrollStop: "dateScrollerStop", components: [
 				{components: this.params.paddingItems},
-				{kind: "enyo.Repeater", name: "repeater", onSetupRow: "setupRows", style: "position: relative;", components: [
+				{kind: "enyo.Repeater", name: "repeater", onSetupItem: "setupRows", style: "position: relative;", components: [
 					//{name: "item", classes: "dateScrollerItem"}
 					{kind: "germboy.DateScrollerRowItem", name: "dateScrollerRowItem", itemHeight: this.params.itemHeight}
 				]},
@@ -41,7 +41,7 @@ enyo.kind({
 		]};
 		this.createComponents([component]);
 		
-		this.$.repeater.setRows(this.items.length);
+		this.$.repeater.setCount(this.items.length);
 		
 		if (this.params.touchEvents) {
 			// Make snap-back a bit quicker
@@ -97,7 +97,7 @@ enyo.kind({
 	},
 	setupRows: function(inSender, inEvent) {
 		var index = inEvent.index;
-		var rowControl = inEvent.row;
+		var rowControl = inEvent.item;
 		
 		rowControl.$.dateScrollerRowItem.$.item.setContent( this.items[index].label );
 	},
